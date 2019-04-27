@@ -6,10 +6,10 @@ function Gameboard(props) {
   return (
     <div className="container">
       <div className="row">
-        {props.cards.map((element, index) => {
+        {props.cardsKey.map((element, index) => {
           return (
-            <Card key={index} onClick={() => props.onClick(index)}>
-              {element}
+            <Card key={element} onClick={() => props.onClick(element)}>
+              {props.cards[element]}
             </Card>
           );
         })}
