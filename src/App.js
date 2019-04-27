@@ -1,0 +1,80 @@
+import React, { Component } from "react";
+import "./App.css";
+import Gameboard from "./component/Gameboard";
+import Jumbotron from "./component/Jumbotron";
+import NavBar from "./component/NavBar";
+
+class App extends Component {
+  state = {
+    topScore: 0,
+    currentScore: 0,
+    gameStatus: "Waiting",
+    clickedArray: Array(12).fill(false),
+    imageArray: [
+      <i className="fas fa-apple-alt" />,
+      <i className="fas fa-ambulance" />,
+      <i className="fas fa-angry" />,
+      <i className="fas fa-archway" />,
+      <i className="fas fa-atlas" />,
+      <i className="fas fa-bacon" />,
+      <i className="fas fa-band-aid" />,
+      <i className="fas fa-baby" />,
+      <i className="fas fa-birthday-cake" />,
+      <i className="fas fa-bowling-ball" />,
+      <i className="fas fa-carrot" />,
+      <i className="fas fa-chess-bishop" />
+    ]
+  };
+
+  handleCardClick = index => {
+    const updatedClickedArray = this.state.clickedArray.slice(0);
+    //Check clicked card for previously being clicked.
+    if (updatedClickedArray[index]) {
+      this.setState({ gameStatus: "Lost" });
+      this.gameOver();
+    } else {
+      if (this.state.currentScore < 11) {
+        updatedClickedArray[index] = true;
+        this.setState({
+          currentScore: this.state.currentScore + 1,
+          topScore: Math.max(this.state.currentScore + 1, this.state.topScore),
+          clickedArray: updatedClickedArray,
+          gameStatus: "Running"
+        });
+      } else {
+        this.setState({
+          currentScore: this.state.currentScore + 1,
+          topScore: Math.max(this.state.currentScore + 1, this.state.topScore),
+          gameStatus: "Won"
+        });
+        this.gameOver();
+      }
+    }
+  };
+
+  gameOver() {
+    this.setState({
+      clickedArray: Array(12).fill(false),
+      currentScore: 0
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <NavBar
+          gameStatus={this.state.gameStatus}
+          currentScore={this.state.currentScore}
+          topScore={this.state.topScore}
+        />
+        <Jumbotron />
+        <Gameboard
+          onClick={this.handleCardClick}
+          cards={this.state.imageArray}
+        />
+      </div>
+    );
+  }
+}
+
+export default App;

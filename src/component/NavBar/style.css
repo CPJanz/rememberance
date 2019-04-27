@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Anton");
+
+li {
+  font-family: "Anton", sans-serif;
+  font-size: 1.75rem !important;
+}
+
+.correct {
+  color: green !important;
+}
+
+.incorrect {
+  color: red !important;
+}

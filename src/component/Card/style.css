@@ -1,0 +1,7 @@
+.clicky-card {
+  border: 2px black solid;
+  font-size: 60px;
+  background: whitesmoke;
+  color: rgb(32, 32, 32);
+  padding: 40px 0;
+}
