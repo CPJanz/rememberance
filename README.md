@@ -6,7 +6,7 @@ This site was created as an excersise in working with the React library.
 
 ## Links
 
-- [Heroku](https://cpjanz.github.io/rememberance/)
+- [Deployed Site](https://cpjanz.github.io/rememberance/)
 - [Github](https://github.com/CPJanz/rememberance)
 
 ## Packages used
